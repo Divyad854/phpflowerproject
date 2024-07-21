@@ -1822,7 +1822,7 @@ if (!$c) {
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="submit" name="btnlogin" value="LogIn" class="section-button">
-                                                     <input type="submit" name="btnlogout" value="LogOut" class="section-button">
+                                                     <input  type="submit" name="btnlogout" value="LogOut" class="section-button">
 
                                                     <a href="conformpw.php" id="RecovrPassword">Forgot your password?</a>
 
