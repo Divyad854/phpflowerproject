@@ -1698,7 +1698,7 @@ for (var attr in meta) {
     <li><a href="account/register.php">Register</a></li>
     
     <li><a href="account/login4236.php">my account</a></li>
-    
+     
   </ul>
 </li>
               <li class="top-hover drodown-show common-currency-picker currency">
