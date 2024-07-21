@@ -65,7 +65,7 @@ session_start();
                     echo '<script>alert("Enter OTP First");</script>';
                 }
                 if ($enteredOTP == $storedOTP) {
-                    header("location: newpw.php");
+//                    header("location: newpw.php");
                     echo '<script>alert("OTP verification successful for email: ' . $email . '");</script>';
                     $_SESSION['verifiystatus'] = 1;
                     
@@ -75,52 +75,68 @@ session_start();
                 }
             }
         }
-
+ if (isset($_POST['btnoptt'])) 
+         {
+           $pw = $_POST['repassword'];
+           $cpw = $_POST['confopw'];
+           if($pw==$cpw)
+           {
+               store_data();
+            header('location: login.php');
+           
+           } else 
+        {
+              echo "<script>alert('not match')</script>";
+        }
+         }
 
         function store_data() {
-//            
-//
-//            $hostname = "localhost";
-//            $username = "root";
-//            $password = "";
-//            $database = "pms";
-//
-//// Connect to the database
-//            $c = mysqli_connect($hostname, $username, $password, $database);
-//
-//            if (!$c) {
-//                die("Connection failed: " . mysqli_connect_error());
-//            } else {
+            
+
+            $hostname = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "dbphpprojechflower";
+
+// Connect to the database
+            $c = mysqli_connect($hostname, $username, $password, $database);
+
+            if (!$c) {
+                die("Connection failed: " . mysqli_connect_error());
+            } else {
                 
                 if ($_SESSION['vstatus'] == 1 and $_SESSION['verifiystatus'] == 1) {
                     // Retrieve and sanitize user inputs
-//                    $email = mysqli_real_escape_string($c, $_POST['txtemail']);
-//                    $pass = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
-//
-//                    // Create the update query
-//                    $qu = "UPDATE student SET password='$pass' WHERE email='$email'";
-//
-//                    // Execute the query
-//                    $q = mysqli_query($c, $qu);
-//
-//                    if (!$q) {
-//                        // Display the error if the query failed
-//                        $e = mysqli_error($c);
-//                        die("Error: " . $e);
-//                    } else {
+                    $email = mysqli_real_escape_string($c, $_POST['txtemail']);
+                    $pass = password_hash($_POST['confopw'], PASSWORD_DEFAULT);
+
+                    // Create the update query
+                    $qu = "UPDATE tblregistration_customer SET password='$pass' WHERE email='$email'";
+
+                    // Execute the query
+                    $q = mysqli_query($c, $qu);
+
+                    if (!$q)
+                    {
+                        // Display the error if the query failed
+                        $e = mysqli_error($c);
+                        die("Error: " . $e);
+                    } else 
+                    {
+                    
                         // Display success message and redirect
                         echo '<script>alert("Password Change Successful")</script>';
                         echo '<script>location.replace("login.php")</script>';
-                    
+                    }
                 } else {
                     echo '<script>alert("Something Wrong to verify")</script>';
                 }
                 // Close the database connection
-//                mysqli_close($c);
-            
+             mysqli_close($c);
+                }
         }
 
-        
+       
         function sendEmail($recipient_email) {
             try {
 
@@ -1936,8 +1952,14 @@ session_start();
                                         <input type="del" maxlength="6" value="" name="verify"  class="input-full" placeholder="Enter otp" 
                                                <?php if (isset($_POST['verify'])) echo 'value="' . htmlspecialchars($_POST['verify']) . '"'; ?>>
                                         <input type="submit" name="btnver" value="Verify otp" class="section-button">
-
-                                        <div class="button-box">
+                                       
+                                        
+                                        
+                                        <input type="password" value="" name="repassword"  class="input-full" placeholder="Enter a new password" >
+                                            <input type="password" value="" name="confopw"  class="input-full" placeholder="Conform password" >
+                                       
+                                            
+                                            <div class="button-box">
                                             <div class="login-toggle-btn">
                                                 <input type="submit" value="submit" name="btnchange" class="section-button">
                                                 <a href="#" >Cancel</a>  

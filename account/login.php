@@ -6,62 +6,107 @@
     <!-- Mirrored from phuler.myshopify.com/account/login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jul 2024 15:37:57 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
+        
         <?php
+        $hostname = "localhost";
+$username = "root";
+$password = "";
+$database = "dbphpprojechflower";
 
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\Exception;
+$c = mysqli_connect($hostname, $username, $password, $database);
+if (!$c) {
+    die("Connection failed: " . mysqli_connect_error());
+} else {
+    echo '<script>alert("Connection Succesfully");</script>';}
+    
+   $qu="select username,password from tblRegistration_customer";
+   $q= mysqli_query($c, $qu);
+   while($r= mysqli_fetch_assoc($q))
+    {
+       echo $r["username"];
+        echo $r["password"];
+       if(isset($_POST['btnlogin']))
+   {
+            $unames=$_POST['uname'];
+       $pass=$_POST['password'];
+       $verify= password_verify( $pass, $r["password"]);
+   echo "$verify";
+       
+   } 
+   
+   
+    }
+//   
+//    if(isset($_POST['btnlogin']))
+//    {
+//     $unames=$_POST['uname'];
+//        $pass=$_POST['password'];
+//    while($r= mysqli_fetch_assoc($q))
+//    {
+//        echo $r['username']," ";
+//        if($r['username']==$unames)
+//        {
+//              echo $r['password'];
+//            $verify= password_verify( $pass, $r["password"]);
+//            break;
+//        }
+//        
+//    }
+//        echo "<script>alert($verify);</script>";
+//        if($verify)
+//        {
+////              header("location: ../index.php");
+//              echo '<script>alert("OTP verification successful for email:");</script>';
+//        
+//        }
+//        else {
+//            echo "<script>alert('Username and password does not match');</script>";
+//            
+//        }
+//    }
+//    }
+?>
+        <?php
+        if (isset($_POST['btnlogin'])) {
+            $hostname = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "dbphpprojechflower";
 
-        require 'C:\xampp\htdocs\Phpprojectflower\account\PHPMailer-master\src\PHPMailer.php';
-        require 'C:\xampp\htdocs\Phpprojectflower\account\PHPMailer-master\src\Exception.php';
-        require 'C:\xampp\htdocs\Phpprojectflower\account\PHPMailer-master\src\SMTP.php';
+            $conn = mysqli_connect($hostname, $username, $password, $database);
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "test";
-        if (isset($_POST['btnoptsend'])) {
+            if (!$con) {
+                echo '<script>alert("Some Went Wrong While Connecting server.");</script>';
+            } else {
+                $email = $_POST['uname'];
+                $pass = $_POST['password'];
 
-            try {
+                $q= "SELECT password FROM student WHERE username='$email'";
+                $qu = mysqli_query($conn, $q);
 
+                $num_rows = mysqli_num_rows($qu);
+                echo '<script>alert("Number of rows selected: ' . $num_rows . '");</script>';
 
-                $recipient_email = $_POST['email'];
-//                $recipient_email="22bmiit061@gmail.com";
-                $otp = mt_rand(100000, 999999);
-
-                $mail = new PHPMailer(true);
-
-// SMTP settings
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'divyaghori29@gmail.com'; //enter email adddress
-                $mail->Password = 'qojzkvrjwikguqmk'; // Remove space at the end Enter email password
-                $mail->SMTPSecure = 'tls';
-                $mail->Port = 587;
-
-// Sender and recipient
-                $mail->setFrom('divyaghori29@gmail.com', 'divya');
-                $mail->addAddress($recipient_email);
-
-// Email content
-                $mail->isHTML(true);
-                $mail->Subject = 'Password Reset OTP';
-                $mail->Body = 'Your OTP is: ' . $otp;
-
-// Send email
-                $mail->send();
-
-                session_start();
-                $_SESSION['otp'] = $otp;
-                $_SESSION['email'] = $recipient_email;
-                echo "<script>alert('OTP send successfully')</script>";
-                //header("Location: OTPVerification.php");
-                // exit();
-            } catch (Exception $e) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
+                if ($num_rows == 1) {
+                    while ($r = mysqli_fetch_assoc($qu)) {
+                        $dbpass = $r['password'];
+                        echo "<script>alert('Stored Password Hash: $dbpass');</script>";
+                        echo "<script>alert('Entered Password: $pass');</script>";
+                        echo "<script>alert('password_verify($pass,$dbpass)');</script>";
+                        if (password_verify($pass,$dbpass)) {
+                            echo '<script>alert("Login Successfully");</script>';
+                            echo '<script>location.replace("C:/xampp/htdocs/Class/html/index.php")</script>';
+                        } else {
+                            echo '<script>alert("Wrong Password");</script>';
+                        }
+                    }
+                } else {
+                    echo '<script>alert("No user found with the given email.");</script>';
+                }
+                mysqli_close($conn);
             }
         }
+
         ?>
         <!-- Basic page needs ================================================== -->
         <meta charset="utf-8">
@@ -1753,12 +1798,13 @@
                                 We&#39;ve sent you an email with a link to update your password.
                             </div>
                         <div id="CustomerLoginForm" class="login">
-                        <form method="post" action="../index.php" id="customer_login" accept-charset="UTF-8" data-login-with-shop-sign-in="true"><input type="hidden" name="form_type" value="customer_login" /><input type="hidden" name="utf8" value="✓" />
+                        <form method="post" id="customer_login" accept-charset="UTF-8" data-login-with-shop-sign-in="true"><input type="hidden" name="form_type" value="customer_login" /><input type="hidden" name="utf8" value="✓" />
 
                             <div id="CustomerLoginForm" class="login">
 
                                     <div class="login-form-container">
                                         <div class="login-text login-title mb-30">
+                                           <!-- Find -->
                                             <h2>Login</h2>
 
 
@@ -1770,11 +1816,12 @@
 
                                             <input type="text" name="uname" id="Customeruser" class="input-full" placeholder="Username" required="">
 
-                                            <input type="password" value="" name="password"   placeholder="Enter Password" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,8}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
+                                            <input type="password" value="" name="password"   placeholder="Enter Password"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
 
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
-                                                    <button type="submit" class="section-button">Log In</button>
+                                                    <input type="submit" name="btnlogin" value="LogIn" class="section-button">
+                                                     <input type="submit" name="btnlogout" value="LogOut" class="section-button">
 
                                                     <a href="conformpw.php" id="RecovrPassword">Forgot your password?</a>
 
