@@ -36,9 +36,6 @@
 <meta property="og:url" content="register.php">
 <meta property="og:site_name" content="Phuler - Flower Shop Shopify Theme">
 
-
-
-
   <meta name="twitter:card" content="summary">
 
 
@@ -1610,7 +1607,8 @@ for (var attr in meta) {
 </div>
 
 <!-- BREADCRUMBS SETCTION END -->
-	
+
+
 
 
 	<main role="main">

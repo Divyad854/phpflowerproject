@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
@@ -7,62 +10,24 @@
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <?php
-
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\Exception;
-
-        require 'C:\xampp\htdocs\Phpprojectflower\account\PHPMailer-master\src\PHPMailer.php';
-        require 'C:\xampp\htdocs\Phpprojectflower\account\PHPMailer-master\src\Exception.php';
-        require 'C:\xampp\htdocs\Phpprojectflower\account\PHPMailer-master\src\SMTP.php';
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "test";
-        if (isset($_POST['btnoptsend'])) {
-
-            try {
-
-
-                $recipient_email = $_POST['email'];
-//                $recipient_email="22bmiit061@gmail.com";
-                $otp = mt_rand(100000, 999999);
-
-                $mail = new PHPMailer(true);
-
-// SMTP settings
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'divyaghori29@gmail.com'; //enter email adddress
-                $mail->Password = 'qojzkvrjwikguqmk'; // Remove space at the end Enter email password
-                $mail->SMTPSecure = 'tls';
-                $mail->Port = 587;
-
-// Sender and recipient
-                $mail->setFrom('divyaghori29@gmail.com', 'divya');
-                $mail->addAddress($recipient_email);
-
-// Email content
-                $mail->isHTML(true);
-                $mail->Subject = 'Password Reset OTP';
-                $mail->Body = 'Your OTP is: ' . $otp;
-
-// Send email
-                $mail->send();
-
-                session_start();
-                $_SESSION['otp'] = $otp;
-                $_SESSION['email'] = $recipient_email;
-                echo "<script>alert('OTP send successfully')</script>";
-                //header("Location: OTPVerification.php");
-                // exit();
-            } catch (Exception $e) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            }
+         if (isset($_POST['btnoptt'])) 
+         {
+           $pw = $_POST['repassword'];
+           $cpw = $_POST['confopw'];
+           if($pw==$cpw)
+           {
+          
+            header('location: login.php');
+           
+           }
+         
+        else 
+        {
+              echo "<script>alert('not match')</script>";
         }
-        ?>
+         }
+         ?>  
+       
         <!-- Basic page needs ================================================== -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -1741,6 +1706,43 @@
         <!-- BREADCRUMBS SETCTION END -->
 
 
+<!--meet-->
+        <main role="main">
+
+            <div class="register-area pt-80 pb-80 login-form-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="offset-lg-2 col-lg-8 col-md-12 col-12">
+
+
+                            <div id="RecoverPasswordForm" class="login">
+                                <form method="post"  >
+
+
+                                    <div class="login-text">
+                                        <h2>Reset your password</h2>
+                                        <span>Enter new password.</span>
+                                    </div>
+                                    <div class="login-form">
+                                         <input type="password" value="" name="repassword"  class="input-full" placeholder="Enter a new password" >
+                                         <br>
+                                            <input type="password" value="" name="confopw"  class="input-full" placeholder="Conform password" >
+                                            <br>
+                                            <div class="button-box">
+                                                <div class="login-toggle-btn">
+                                                    <button type="submit" name="btnoptt" class="section-button">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
 
         <main role="main">
 
@@ -1752,43 +1754,40 @@
                             <div class="note form-success" id="ResetSuccess" style="display: none;">
                                 We&#39;ve sent you an email with a link to update your password.
                             </div>
-                        <div id="CustomerLoginForm" class="login">
+
+                              <div id="CustomerLoginForm" class="login">
                         <form method="post" action="../index.php" id="customer_login" accept-charset="UTF-8" data-login-with-shop-sign-in="true"><input type="hidden" name="form_type" value="customer_login" /><input type="hidden" name="utf8" value="✓" />
 
-                            <div id="CustomerLoginForm" class="login">
+                            <div id="RecoverPasswordForm" style="display: none;" class="login">
+
+
+
+                                <form method="post" action="register.php"  >
+                                    <input type="hidden" name="form_type" value="recover_customer_password" />
+                                    <input type="hidden" name="utf8" value="✓" />
+
+
+
+
 
                                     <div class="login-form-container">
-                                        <div class="login-text login-title mb-30">
-                                            <h2>Login</h2>
-
-
-                                            <p></p>
+                                        <div class="login-text">
+                                            <h2>Reenter your password</h2>
+                                            <span>ReEnter your password and conform your password.</span>
                                         </div>
-
-
                                         <div class="login-form">
-
-                                            <input type="text" name="uname" id="Customeruser" class="input-full" placeholder="Username" required="">
-
-                                            <input type="password" value="" name="password"   placeholder="Enter Password" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,8}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
-
+                                            <input type="password" value="" name="repassword"  class="input-full" placeholder="Enter a new password" >
+                                            <input type="password" value="" name="confopw"  class="input-full" placeholder="Conform password" >
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
-                                                    <button type="submit" class="section-button">Log In</button>
-
-                                                    <a href="conformpw.php" id="RecovrPassword">Forgot your password?</a>
-
-                                                </div>
-                                                <div class="create-account-btn">
-                                                    <a href="register.php">Create Account</a>
+                                                    <button type="submit" name="btnoptt">Submit</button>
+                                                    <a href="#" id="HideRecoverPasswordLink">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-
-                            
                         </div>
                     </div>
                 </div>
@@ -1797,7 +1796,6 @@
 
         </main>
 
-        
 
 
 
