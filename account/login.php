@@ -81,6 +81,7 @@ if (!$c) {
                 $email = $_POST['uname'];
                 $pass = $_POST['password'];
 
+                
                 $q= "SELECT password FROM student WHERE username='$email'";
                 $qu = mysqli_query($conn, $q);
 
