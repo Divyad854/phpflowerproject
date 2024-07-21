@@ -1,5 +1,4 @@
 
-
 <?php
     if(isset($_POST['btnsubmit']))
     {
@@ -9,7 +8,6 @@
         
          }
 ?>
-
 
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -1700,7 +1698,7 @@
                                             <input type="email" name="customer[email]" id="Email" class="input-full" placeholder="Email"  autocorrect="off" autocapitalize="off" required>
                                             
                                             <label for="CreatePassword" class="hidden-label">Password</label>
-                                            <input type="password" name="customer[password]"  id="CreatePassword" class="input-full"  placeholder="Password" title="Must contain at least one number and one uppercase and lowercase letter, and 8 character" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,8}">
+                                            <input type="password" name="customer[password]"  id="CreatePassword" class="input-full"  placeholder="Password" title="Must contain at least one number and one uppercase and lowercase letter, and total 8 character" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,8}">
                                             
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">

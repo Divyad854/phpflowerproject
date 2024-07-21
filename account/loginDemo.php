@@ -1,3 +1,6 @@
+<?php
+    
+?>
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
@@ -1697,7 +1700,7 @@ for (var attr in meta) {
                 
                 <input type="text" name="uname" id="Customeruname"  placeholder="Username" required="">
              
-                <input type="password" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" id="CustomerPassword"  placeholder="Password" required="">
+                <input type="password" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,8}" title="Must contain at least one number and one uppercase and lowercase letter, and 8 character" name="password" id="CustomerPassword"  placeholder="Password" required="">
               
               <div class="button-box">
                 <div class="login-toggle-btn">

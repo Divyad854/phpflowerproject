@@ -1770,7 +1770,7 @@
 
                                             <input type="text" name="uname" id="Customeruser" class="input-full" placeholder="Username" required="">
 
-                                            <input type="password" value="" name="password"   placeholder="Enter Password" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,8}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
+                                            <input type="password" name="password"  placeholder="Enter Password" title="Must contain at least one number and one uppercase and lowercase letter, and total 8 character" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,8}" required="">
 
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
