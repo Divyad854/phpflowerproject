@@ -1817,12 +1817,12 @@ if (!$c) {
 
                                             <input type="text" name="uname" id="Customeruser" class="input-full" placeholder="Username" required="">
 
-                                            <input type="password" value="" name="password"   placeholder="Enter Password"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
+                                            <input type="password" value="" name="password" pattern="^(?=.[a-z]|.\d).{1,8}$"  placeholder="Enter Password"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
 
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
-                                                    <input type="submit" name="btnlogin" value="LogIn" class="section-button">
-                                                     <input  type="submit" name="btnlogout" value="LogOut" class="section-button">
+                                                    <input type="submit" name="btnlogin" value="LogIn" style="width:100px; background-color:green; color:white;" class="section-button">
+                                                     <input  type="submit" name="btnlogout" value="LogOut" style="width:100px; background-color: #df5c39; color:white;" class="section-button">
 
                                                     <a href="conformpw.php" id="RecovrPassword">Forgot your password?</a>
 

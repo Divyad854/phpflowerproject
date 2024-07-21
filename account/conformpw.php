@@ -1948,16 +1948,16 @@ session_start();
                                         <input type="email" value="" name="txtemail" id="RecoverEmail" class="input-full" placeholder="Email" 
                                               <?php if (isset($_POST['txtemail'])) echo 'value="' . htmlspecialchars($_POST['txtemail']) . '"'; ?> required>
                                         
-                                        <input type="submit" name="btnotp" value="send otp" class="section-button">
+                                        <input type="submit" name="btnotp" value="send otp" style="width:200px; background-color:lightgrey; color:black;margin:20px;" class="section-button"><br>
                                         
                                         <input type="del" maxlength="6" value="" name="verify"  class="input-full" placeholder="Enter otp" 
                                                <?php if (isset($_POST['verify'])) echo 'value="' . htmlspecialchars($_POST['verify']) . '"'; ?> required>
                                         
-                                        <input type="submit" name="btnver" value="Verify otp" class="section-button">
+                                        <input type="submit" name="btnver" value="Verify otp" style="width:200px; background-color:green; color:white; margin:20px;" class="section-button"><br>
                                         
                                         <div class="button-box">
                                             <div class="login-toggle-btn">
-                                                <input type="submit" value="submit" name="btnchange" class="section-button">
+                                                <input type="submit" value="submit" name="btnchange" style="width:200px; background-color:red; color:white; align:center; margin:20px;" class="section-button">
                                                 <a href="#" >Cancel</a>  
                                             </div>
                                         </div>
@@ -2002,8 +2002,8 @@ session_start();
                                             <span>ReEnter your password and conform your password.</span>
                                         </div>
                                         <div class="login-form">
-                                            <input type="password" value="" name="repassword"  class="input-full" placeholder="Enter a new password" >
-                                            <input type="password" value="" name="confopw"  class="input-full" placeholder="Conform password" >
+                                            <input type="password" value="" name="repassword" pattern="^(?=.[a-z]|.\d).{1,8}$" class="input-full" placeholder="Enter a new password" >
+                                            <input type="password" value="" name="confopw" pattern="^(?=.[a-z]|.\d).{1,8}$" class="input-full" placeholder="Conform password" >
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <button type="submit" name="btnoptt">Submit</button>

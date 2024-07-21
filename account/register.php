@@ -1737,11 +1737,11 @@ border: 1px solid #333333;
 <input type="email" name="email" id="Email" class="input-full" placeholder="Email"  autocorrect="off" autocapitalize="off" required>
 
 <label for="CreatePassword" class="hidden-label">Password</label>
-<input type="password" name="password"  id="CreatePassword" class="input-full"  placeholder="Password" title="Must contain at least one number and one uppercase and lowercase letter, and 8 character" >
+<input type="password" name="password" pattern="^(?=.[a-z]|.\d).{1,8}$" id="CreatePassword" class="input-full"  placeholder="Password" title="Must contain at least one number and one uppercase and lowercase letter, and 8 character" >
 
 <div class="button-box">
 <div class="login-toggle-btn">
-<input type="submit" formaction="../index.php" class="section-button" value="Create" name="btnsubmit">
+<input type="submit" formaction="../index.php" class="section-button" value="Create" name="btnsubmit" style="width:200px; background-color:lightgrey;">
 </div>
 </div>
 
