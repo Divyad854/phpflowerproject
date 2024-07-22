@@ -1047,7 +1047,7 @@ session_start();
 
 
                                     <a href="../index.php">
-                                        <img src="../cdn/shop/files/logo_300x47af.png?v=1613739932" alt="Phuler - Flower Shop Shopify Theme">
+                                        <img src="../cdn/shop/files/0fc34013-64d2-4011-be96-996a701b5f5e.jpg" alt="Phuler - Flower Shop Shopify Theme">
                                     </a>
 
                                 </div>
