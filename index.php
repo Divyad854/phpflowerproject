@@ -1,9 +1,16 @@
 <?php
 session_start();
-if(isset($_POST['btncommit']))
-{
-    header("location: login.php");
-    session_destroy();
+if(isset($_SESSION['usernamese']) && $_SESSION['passwordse'])
+{ 
+    if(isset($_POST['btncommit']))
+    {
+        session_destroy();
+        header("location: localhost/PhpProjectflower/account/login.php");
+    
+    }
+ else {
+    
+}
 }
 ?>
 <!doctype html>
@@ -5236,7 +5243,8 @@ for (var attr in meta) {
                            placeholder="email@example.com" aria-label="email@example.com"   autocapitalize="off">
                     <div class="clear-2">
                       <input type="submit" class="button" name="commit" id="Subscribe" value="Subscribe">
-                      <input type="submit" class="button" name="commit" id="Subscribe" value="Log out">
+                      <input type="submit" class="button" name="btncommit" id="Subscribe" value="Log out">
+                      <!-- -->
                     </div>
                   </div>
                 </div>
