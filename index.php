@@ -5228,6 +5228,7 @@ for (var attr in meta) {
                            placeholder="email@example.com" aria-label="email@example.com"   autocapitalize="off">
                     <div class="clear-2">
                       <input type="submit" class="button" name="commit" id="Subscribe" value="Subscribe">
+                      <input type="submit" class="button" name="commit" id="Subscribe" value="Log out">
                     </div>
                   </div>
                 </div>
