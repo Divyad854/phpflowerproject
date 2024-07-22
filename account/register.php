@@ -828,7 +828,7 @@ color: #ff3d2a;
 
 
 <a href="../index.php">
-<img src="../cdn/shop/files/logo_300x47af.png?v=1613739932" alt="Phuler - Flower Shop Shopify Theme">
+<img src="../cdn/shop/files/0fc34013-64d2-4011-be96-996a701b5f5e.jpg" alt="Phuler - Flower Shop Shopify Theme">
 </a>
 
 </div>
@@ -1709,8 +1709,8 @@ border: 1px solid #333333;
 <input type="date" name="dob" class="input-full" placeholder="Enter date of birth" required>
 
 <label class="hidden-label">Gender</label>
-<input type="radio" name="rbgender" value="M">Male<br>
-<input type="radio" name="rbgender" value="F">Female<br>
+<input type="radio" name="rbgender" value="M"><label>Male</label><br>
+<input type="radio" name="rbgender" value="F"><label>Female</label>
 <!--<select class="input-full" name="gender[]" style="border:1px solid buttonface" required>
 <option value="M">Male</option>
 <option value="F">Female</option>

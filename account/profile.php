@@ -1,13 +1,3 @@
-
-<?php
-session_start();
-if(isset($_SESSION['usernamese']))
-{
-    echo '<script>alert("fvgbhjnmk,l")</script>';
-    echo '<script>window.location.replace("profile.php")</script>';
-    exit();
-}
-?>
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
@@ -15,70 +5,65 @@ if(isset($_SESSION['usernamese']))
 
     <!-- Mirrored from phuler.myshopify.com/account/login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jul 2024 15:37:57 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-   
+    <?php session_start(); ?>
     <head>
         <?php
-        if (isset($_POST['btnlogin'])) {
-            $hostname = "localhost";
-            $username = "root";
-            $password = "";
-            $database = "dbphpprojechflower";
-
-            $conn = mysqli_connect($hostname, $username, $password, $database);
-
-            if (!$conn) {
-                echo '<script>alert("Some Went Wrong While Connecting server.");</script>';
-            } else {
-                $email = $_POST['uname'];
-                $pass = $_POST['password'];
-                  
-                $query = "SELECT password FROM tblRegistration_customer WHERE username='$email'";
-                $qu = mysqli_query($conn, $query);
-
-                $num_rows = mysqli_num_rows($qu);
-              //  echo '<script>alert("Number of rows selected: ' . $num_rows . '");</script>';
-
-                if ($num_rows == 1) {
-                   while($r= mysqli_fetch_assoc($qu))
-    {
-       
-       $dbpass =  $r["password"];
-         
-       
-       echo '<script>alert("Number of rows selected: ' . $_SESSION['usernamese'] . '");</script>';
-          $_SESSION['passwordse']="$dbpass";
-    }
-                        
-                       // echo "<script>alert('Stored Password Hash: $dbpass');</script>";
-                       // echo "<script>alert('Entered Password: $pass');</script>";
-                       // echo "<script>alert('db Password: $dbpass');</script>";
-                        $dnpass =password_verify($pass,$dbpass);
-                       // echo "<script>alert('  $dnpass');</script>";
-                        if($dnpass)
-                        {
-                            $_SESSION['usernamese']="$email";
-                             echo "<script>alert('password verify');</script>";
-                            header("location: profile.php");
-                             // echo '<script>location.replace("C:/xampp/htdocs/flowerpremiumflorist/index.php")</script>';
-                        }
-                         else {
-                           echo '<script>alert("Wrong Password");</script>';
-                        }
-                       
-                    }
-                else {
-                    echo '<script>alert("No user found with the given email.");</script>';
-                }
-                mysqli_close($conn);
-            }
-        }
-
+//        if (isset($_POST['btnlogin'])) {
+//            $hostname = "localhost";
+//            $username = "root";
+//            $password = "";
+//            $database = "dbphpprojechflower";
+//
+//            $conn = mysqli_connect($hostname, $username, $password, $database);
+//
+//            if (!$conn) {
+//                echo '<script>alert("Some Went Wrong While Connecting server.");</script>';
+//            } else {
+//                $email = $_POST['uname'];
+//                $pass = $_POST['password'];
+//                  $_SESSION['usernamese']="$u";
+//          $_SESSION['passwordse']="$p";
+//                $query = "SELECT password FROM tblRegistration_customer WHERE username='$email'";
+//                $qu = mysqli_query($conn, $query);
+//
+//                $num_rows = mysqli_num_rows($qu);
+//              //  echo '<script>alert("Number of rows selected: ' . $num_rows . '");</script>';
+//
+//                if ($num_rows == 1) {
+//                   while($r= mysqli_fetch_assoc($qu))
+//    {
+//       
+//       $dbpass =  $r["password"];
+//    }
+//                        
+//                       // echo "<script>alert('Stored Password Hash: $dbpass');</script>";
+//                       // echo "<script>alert('Entered Password: $pass');</script>";
+//                       // echo "<script>alert('db Password: $dbpass');</script>";
+//                        $dnpass =password_verify($pass,$dbpass);
+//                       // echo "<script>alert('  $dnpass');</script>";
+//                        if($dnpass)
+//                        {
+//                             echo "<script>alert('password verify');</script>";
+//                            header("location: ../index.php");
+//                             // echo '<script>location.replace("C:/xampp/htdocs/flowerpremiumflorist/index.php")</script>';
+//                        }
+//                         else {
+//                           echo '<script>alert("Wrong Password");</script>';
+//                        }
+//                       
+//                    }
+//                else {
+//                    echo '<script>alert("No user found with the given email.");</script>';
+//                }
+//                mysqli_close($conn);
+//            }
+//        }
         ?>
-        
-       
-        
-       
-       
+
+
+
+
+
         <!-- Basic page needs ================================================== -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -159,7 +144,8 @@ if(isset($_SESSION['usernamese']))
             Shopify.routes = Shopify.routes || {};
             Shopify.routes.root = "../index.php";</script>
         <script type="module">!function (o) {
-                (o.Shopify = o.Shopify || {}).modules = !0}(window);</script>
+                (o.Shopify = o.Shopify || {}).modules = !0
+            }(window);</script>
         <script>!function (o) {
                 function n() {
                     var o = [];
@@ -282,10 +268,15 @@ if(isset($_SESSION['usernamese']))
         <link href="https://monorail-edge.shopifysvc.com/" rel="dns-prefetch">
         <script>(function () {
                 if ("sendBeacon" in navigator && "performance" in window) {
-                    var session_token = document.cookie.match(/_shopify_s=([^;]*)/);function handle_abandonment_event(e) {
+                    var session_token = document.cookie.match(/_shopify_s=([^;]*)/);
+                    function handle_abandonment_event(e) {
                         var entries = performance.getEntries().filter(function (entry) {
-                            return /monorail-edge.shopifysvc.com/.test(entry.name);});if (!window.abandonment_tracked && entries.length === 0) {
-                            window.abandonment_tracked = true;var currentMs = Date.now();var navigation_start = performance.timing.navigationStart;
+                            return /monorail-edge.shopifysvc.com/.test(entry.name);
+                        });
+                        if (!window.abandonment_tracked && entries.length === 0) {
+                            window.abandonment_tracked = true;
+                            var currentMs = Date.now();
+                            var navigation_start = performance.timing.navigationStart;
                             var payload = {shop_id: 2155708489, url: window.location.href, navigation_start, duration: currentMs - navigation_start, session_token: session_token && session_token.length === 2 ? session_token[1] : "", page_type: "customers/login"};
                             window.navigator.sendBeacon("https://monorail-edge.shopifysvc.com/v1/produce", JSON.stringify({schema_id: "online_store_buyer_site_abandonment/1.1", payload: payload, metadata: {event_created_at_ms: currentMs, event_sent_at_ms: currentMs}}));
                         }
@@ -743,7 +734,7 @@ if(isset($_SESSION['usernamese']))
 
                                                     <li><a href="register.php">Register</a></li>
 
-                                                    <li><a href="profile.php">my account</a></li>
+                                                    <li><a href="login4236.php">my account</a></li>
 
                                                 </ul>
                                             </li>
@@ -1162,7 +1153,7 @@ if(isset($_SESSION['usernamese']))
 
 
                                                 <a href="../index.php">
-                                                    <img src="../cdn/shop/files/0fc34013-64d2-4011-be96-996a701b5f5e.jpg" alt="Phuler - Flower Shop Shopify Theme">
+                                                    <img src="../cdn/shop/files/logo_300x47af.png?v=1613739932" alt="Phuler - Flower Shop Shopify Theme">
                                                 </a>
 
                                             </div>
@@ -1758,64 +1749,18 @@ if(isset($_SESSION['usernamese']))
 
 
 
-        <main role="main">
-
-            <div class="register-area pt-80 pb-80 login-form-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="offset-lg-2 col-lg-8 col-md-12 col-12">
-
-                            <div class="note form-success" id="ResetSuccess" style="display: none;">
-                                We&#39;ve sent you an email with a link to update your password.
-                            </div>
-                        <div id="CustomerLoginForm" class="login">
-                        <form method="post" id="customer_login" accept-charset="UTF-8" data-login-with-shop-sign-in="true"><input type="hidden" name="form_type" value="customer_login" /><input type="hidden" name="utf8" value="✓" />
-
-                            <div id="CustomerLoginForm" class="login">
-
-                                    <div class="login-form-container">
-                                        <div class="login-text login-title mb-30">
-                                           <!-- Find -->
-                                            <h2>Login</h2>
-
-                                            <!-- find code -->
-                                            <p></p>
-                                        </div>
+        <div>
+<?php
+if (!isset($_SESSION['usernamese'])) {
+    
+    echo '<script>window.location.replace("login.php")</script>';
+    
+}
+?>
+            <a href="blank.php">LogOut</a>
+        </div>
 
 
-                                        <div class="login-form">
-
-                                            <input type="text" name="uname" id="Customeruser" class="input-full" placeholder="Username" required="">
-
-                                            <input type="password" name="password" pattern="^(?=.[a-z]|.\d).{1,8}$"  placeholder="Enter Password"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
-
-                                            <div class="button-box">
-                                                <div class="login-toggle-btn">
-                                                    <input type="submit" name="btnlogin" value="LogIn" style="width:100px; background-color:green; color:white;" class="section-button">
-                                                    
-
-                                                    <a href="conformpw.php" id="RecovrPassword">Forgot your password?</a>
-
-                                                </div>
-                                                <div class="create-account-btn">
-                                                    <a href="register.php">Create Account</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </main>
-
-        
 
 
 
@@ -2283,14 +2228,14 @@ if(isset($_SESSION['usernamese']))
         </div>
         <div id="fb-root"></div>
         <script>(function (d, s, id) {
-                                        var js, fjs = d.getElementsByTagName(s)[0];
-                                        if (d.getElementById(id))
-                                            return;
-                                        js = d.createElement(s);
-                                        js.id = id;
-                                        js.src = "../../connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-                                        fjs.parentNode.insertBefore(js, fjs);
-                                    }(document, 'script', 'facebook-jssdk'));</script>
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id))
+                                    return;
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "../../connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));</script>
 
 
 
