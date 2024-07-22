@@ -1,17 +1,5 @@
 <?php
-session_start();
-if(isset($_SESSION['usernamese']) && $_SESSION['passwordse'])
-{ 
-    if(isset($_POST['btncommit']))
-    {
-        session_destroy();
-        header("location: localhost/PhpProjectflower/account/login.php");
-    
-    }
- else {
-    
-}
-}
+
 ?>
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -32,7 +20,7 @@ if(isset($_SESSION['usernamese']) && $_SESSION['passwordse'])
 
   <!-- Title and description ================================================== -->
   <title>
-  Phuler - Flower Shop Shopify Theme
+  Flower Premium Florist - Flower Shop Shopify Theme
   </title>
   <style>
   .search-results {
@@ -1712,7 +1700,8 @@ for (var attr in meta) {
     
     <li><a href="account/register.php">Register</a></li>
     
-    <li><a href="account/login4236.php">my account</a></li>
+    <li><a href="account/profile.php">my profile</a></li>
+    
      
   </ul>
 </li>
@@ -1769,7 +1758,7 @@ for (var attr in meta) {
   
 
   <a href="index.php">
-   <img src="cdn/shop/files/logo_300x47af.png?v=1613739932" alt="Phuler - Flower Shop Shopify Theme">
+   <img src="cdn/shop/files/0fc34013-64d2-4011-be96-996a701b5f5e.jpg" alt="Phuler - Flower Shop Shopify Theme">
   </a>
   
 </div>
