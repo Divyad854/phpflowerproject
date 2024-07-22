@@ -3,7 +3,7 @@
 session_start();
 if(isset($_SESSION['usernamese']))
 {
-    echo '<script>alert("fvgbhjnmk,l")</script>';
+//    echo '<script>alert("fvgbhjnmk,l")</script>';
     echo '<script>window.location.replace("profile.php")</script>';
     exit();
 }

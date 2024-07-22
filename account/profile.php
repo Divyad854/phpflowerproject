@@ -1752,9 +1752,17 @@
         <div>
 <?php
 if (!isset($_SESSION['usernamese'])) {
-    
+    echo $_SESSION["usernamese"];
     echo '<script>window.location.replace("login.php")</script>';
     
+}
+else{
+    echo "<br>";
+    echo "<br>";
+    
+    echo $_SESSION["usernamese"];
+    echo "<br>";
+    echo "<br>";
 }
 ?>
             <a href="blank.php">LogOut</a>
