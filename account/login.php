@@ -6,66 +6,6 @@
     <!-- Mirrored from phuler.myshopify.com/account/login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jul 2024 15:37:57 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
-        
-        <?php
-        $hostname = "localhost";
-$username = "root";
-$password = "";
-$database = "dbphpprojechflower";
-
-$c = mysqli_connect($hostname, $username, $password, $database);
-if (!$c) {
-    die("Connection failed: " . mysqli_connect_error());
-} else {
-    echo '<script>alert("Connection Succesfully");</script>';}
-    
-   $qu="select username,password from tblRegistration_customer";
-   $q= mysqli_query($c, $qu);
-   while($r= mysqli_fetch_assoc($q))
-    {
-       echo $r["username"];
-        echo $r["password"];
-       if(isset($_POST['btnlogin']))
-   {
-            $unames=$_POST['uname'];
-       $pass=$_POST['password'];
-       $verify= password_verify( $pass, $r["password"]);
-   echo "$verify";
-       
-   } 
-   
-   
-    }
-//   
-//    if(isset($_POST['btnlogin']))
-//    {
-//     $unames=$_POST['uname'];
-//        $pass=$_POST['password'];
-//    while($r= mysqli_fetch_assoc($q))
-//    {
-//        echo $r['username']," ";
-//        if($r['username']==$unames)
-//        {
-//              echo $r['password'];
-//            $verify= password_verify( $pass, $r["password"]);
-//            break;
-//        }
-//        
-//    }
-//        echo "<script>alert($verify);</script>";
-//        if($verify)
-//        {
-////              header("location: ../index.php");
-//              echo '<script>alert("OTP verification successful for email:");</script>';
-//        
-//        }
-//        else {
-//            echo "<script>alert('Username and password does not match');</script>";
-//            
-//        }
-//    }
-//    }
-?>
         <?php
         if (isset($_POST['btnlogin'])) {
             $hostname = "localhost";
@@ -75,39 +15,70 @@ if (!$c) {
 
             $conn = mysqli_connect($hostname, $username, $password, $database);
 
-            if (!$con) {
+            if (!$conn) {
                 echo '<script>alert("Some Went Wrong While Connecting server.");</script>';
             } else {
                 $email = $_POST['uname'];
                 $pass = $_POST['password'];
 
-                
-                $q= "SELECT password FROM student WHERE username='$email'";
-                $qu = mysqli_query($conn, $q);
+                $query = "SELECT password FROM tblRegistration_customer WHERE username='$email'";
+                $qu = mysqli_query($conn, $query);
 
                 $num_rows = mysqli_num_rows($qu);
-                echo '<script>alert("Number of rows selected: ' . $num_rows . '");</script>';
+              //  echo '<script>alert("Number of rows selected: ' . $num_rows . '");</script>';
 
                 if ($num_rows == 1) {
-                    while ($r = mysqli_fetch_assoc($qu)) {
-                        $dbpass = $r['password'];
-                        echo "<script>alert('Stored Password Hash: $dbpass');</script>";
-                        echo "<script>alert('Entered Password: $pass');</script>";
-                        echo "<script>alert('password_verify($pass,$dbpass)');</script>";
-                        if (password_verify($pass,$dbpass)) {
-                            echo '<script>alert("Login Successfully");</script>';
-                            echo '<script>location.replace("C:/xampp/htdocs/Class/html/index.php")</script>';
-                        } else {
-                            echo '<script>alert("Wrong Password");</script>';
+                   while($r= mysqli_fetch_assoc($qu))
+    {
+       
+       $dbpass =  $r["password"];
+    }
+                        
+                       // echo "<script>alert('Stored Password Hash: $dbpass');</script>";
+                       // echo "<script>alert('Entered Password: $pass');</script>";
+                       // echo "<script>alert('db Password: $dbpass');</script>";
+                        $dnpass =password_verify($pass,$dbpass);
+                       // echo "<script>alert('  $dnpass');</script>";
+                        if($dnpass)
+                        {
+                             echo "<script>alert('password verify');</script>";
+                            header("location: ../index.php");
+                             // echo '<script>location.replace("C:/xampp/htdocs/flowerpremiumflorist/index.php")</script>';
                         }
+                         else {
+                           echo '<script>alert("Wrong Password");</script>';
+                        }
+                       
                     }
-                } else {
+                else {
                     echo '<script>alert("No user found with the given email.");</script>';
                 }
                 mysqli_close($conn);
             }
         }
 
+        ?>
+        
+        <?php 
+session_start();
+?>
+        <?php
+        if(isset($_POST['btnlogout']))
+        {
+            session_destroy();
+        }
+        ?>
+        <?php
+         $_SESSION['usernamese']=$_POST["uname"];
+          $_SESSION['passwordse']=$_POST["password"];
+//         if(isset($_SESSION['loginsession']))
+//         {
+//         echo $_SESSION['loginsession'];}
+// else {
+//     
+ //}
+      
+         
         ?>
         <!-- Basic page needs ================================================== -->
         <meta charset="utf-8">
@@ -1808,7 +1779,7 @@ if (!$c) {
                                            <!-- Find -->
                                             <h2>Login</h2>
 
-
+                                            <!-- find code -->
                                             <p></p>
                                         </div>
 
@@ -1817,7 +1788,7 @@ if (!$c) {
 
                                             <input type="text" name="uname" id="Customeruser" class="input-full" placeholder="Username" required="">
 
-                                            <input type="password" value="" name="password" pattern="^(?=.[a-z]|.\d).{1,8}$"  placeholder="Enter Password"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
+                                            <input type="password" name="password" pattern="^(?=.[a-z]|.\d).{1,8}$"  placeholder="Enter Password"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="input-full" placeholder="Password" required="">
 
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">

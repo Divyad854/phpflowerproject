@@ -1944,20 +1944,24 @@ session_start();
                                         <span>We will send you an otp for reset your password.</span>
                                     </div>
                                     <div class="login-form">
-                                       
                                         <input type="email" value="" name="txtemail" id="RecoverEmail" class="input-full" placeholder="Email" 
                                               <?php if (isset($_POST['txtemail'])) echo 'value="' . htmlspecialchars($_POST['txtemail']) . '"'; ?> required>
-                                        
-                                        <input type="submit" name="btnotp" value="send otp" style="width:200px; background-color:lightgrey; color:black;margin:20px;" class="section-button"><br>
-                                        
+
+                                        <input type="submit" name="btnotp" value="send otp" style="width:200px; background-color:lightgrey;" class="section-button">
+
                                         <input type="del" maxlength="6" value="" name="verify"  class="input-full" placeholder="Enter otp" 
-                                               <?php if (isset($_POST['verify'])) echo 'value="' . htmlspecialchars($_POST['verify']) . '"'; ?> required>
+                                               <?php if (isset($_POST['verify'])) echo 'value="' . htmlspecialchars($_POST['verify']) . '"'; ?>>
+                                        <input type="submit" name="btnver" value="Verify otp"  style="width:200px; background-color:lightgrey;" class="section-button">
+                                       
                                         
-                                        <input type="submit" name="btnver" value="Verify otp" style="width:200px; background-color:green; color:white; margin:20px;" class="section-button"><br>
                                         
-                                        <div class="button-box">
+                                        <input type="password" value="" name="repassword" pattern="^(?=.[a-z]|.\d).{1,8}$" class="input-full" placeholder="Enter a new password" >
+                                            <input type="password" value="" name="confopw" pattern="^(?=.[a-z]|.\d).{1,8}$" class="input-full" placeholder="Conform password" >
+                                       
+                                            
+                                            <div class="button-box">
                                             <div class="login-toggle-btn">
-                                                <input type="submit" value="submit" name="btnchange" style="width:200px; background-color:red; color:white; align:center; margin:20px;" class="section-button">
+                                                <input type="submit" value="submit" name="btnchange" style="width:200px; background-color:lightgrey;" class="section-button">
                                                 <a href="#" >Cancel</a>  
                                             </div>
                                         </div>
@@ -2002,8 +2006,8 @@ session_start();
                                             <span>ReEnter your password and conform your password.</span>
                                         </div>
                                         <div class="login-form">
-                                            <input type="password" value="" name="repassword" pattern="^(?=.[a-z]|.\d).{1,8}$" class="input-full" placeholder="Enter a new password" >
-                                            <input type="password" value="" name="confopw" pattern="^(?=.[a-z]|.\d).{1,8}$" class="input-full" placeholder="Conform password" >
+                                            <input type="password" value="" name="repassword"  class="input-full" placeholder="Enter a new password" >
+                                            <input type="password" value="" name="confopw"  class="input-full" placeholder="Conform password" >
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <button type="submit" name="btnoptt">Submit</button>
@@ -2162,7 +2166,6 @@ session_start();
                                                             <input class="input_text" type="hidden" name="contact[tags]" value="newsletter">
                                                             <input class="input_text" type="email" name="contact[email]" id="Email" value=""
                                                                    placeholder="email@example.com" aria-label="email@example.com"  autocorrect="off" autocapitalize="off">
-                                                            
                                                             <div class="clear-2">
                                                                 <input type="submit" class="button" name="commit" id="Subscribe" value="Subscribe">
                                                             </div>
