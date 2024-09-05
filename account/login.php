@@ -56,10 +56,16 @@ if(isset($_SESSION['usernamese']))
                        // echo "<script>alert('  $dnpass');</script>";
                         if($dnpass)
                         {
+                            if($email=='krishnayadav')
+                            {
+                                 header("location: /PhpProjectflower/Admin/Aindex.php");
+                            }
+                            else{
                             $_SESSION['usernamese']="$email";
                              echo "<script>alert('password verify');</script>";
                             header("location: profile.php");
                              // echo '<script>location.replace("C:/xampp/htdocs/flowerpremiumflorist/index.php")</script>';
+                        }
                         }
                          else {
                            echo '<script>alert("Wrong Password");</script>';
