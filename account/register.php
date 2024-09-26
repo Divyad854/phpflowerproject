@@ -28,7 +28,7 @@ if (!$c) {
 
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-        $qu = "INSERT INTO tblregistration_customer(fname,mname,lname, DOB, gender, mobileno,address,city,pincode, username,email,password)VALUES ('$fname','$mname','$lname','$DOB','$gender',$mobileno,'$address','$city',$pincode,'$username','$email','$password')";
+        $qu = "INSERT INTO tblregistration_customers(fname,mname,lname, DOB, gender, mobileno,address,city,pincode, username,email,password)VALUES ('$fname','$mname','$lname','$DOB','$gender',$mobileno,'$address','$city',$pincode,'$username','$email','$password')";
             
         $q = mysqli_query($c, $qu);
 

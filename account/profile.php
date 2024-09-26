@@ -24,7 +24,7 @@
 //                $pass = $_POST['password'];
 //                  $_SESSION['usernamese']="$u";
 //          $_SESSION['passwordse']="$p";
-//                $query = "SELECT password FROM tblRegistration_customer WHERE username='$email'";
+//                $query = "SELECT password FROM tblRegistration_customers WHERE username='$email'";
 //                $qu = mysqli_query($conn, $query);
 //
 //                $num_rows = mysqli_num_rows($qu);

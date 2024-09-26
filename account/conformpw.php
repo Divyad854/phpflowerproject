@@ -111,7 +111,7 @@ session_start();
                     $pass = password_hash($_POST['confopw'], PASSWORD_DEFAULT);
 
                     // Create the update query
-                    $qu = "UPDATE tblregistration_customer SET password='$pass' WHERE email='$email'";
+                    $qu = "UPDATE tblregistration_customers SET password='$pass' WHERE email='$email'";
 
                     // Execute the query
                     $q = mysqli_query($c, $qu);
